@@ -1,0 +1,57 @@
+ul,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dice {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.die {
+  background-color: #ffffff;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 4px;
+  box-shadow: inset 0px 0px 1px 1px rgba(24, 33, 35, 0.25),
+    inset 5px 5px 3px 0.5px rgba(24, 33, 35, 0.1),
+    inset -5px -5px 3px 0.5px rgba(24, 33, 35, 0.1);
+}
+
+.die.roll {
+  animation: roll 1s linear infinite;
+  animation-fill-mode: forwards; /* Stop animation at the end state */
+}
+
+.die.roll:nth-child(even) {
+  animation-duration: 1s; /* Adjust the duration for even-indexed dice */
+  animation-delay: 0.25s; /* Add a delay before stopping */
+  animation-direction: reverse;
+}
+
+.die .dot {
+  width: 60%;
+  height: 60%;
+  background-color: #000000;
+  border-radius: 50%;
+  box-shadow: inset 0 0 7px rgba(202, 204, 214, 0.9);
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
