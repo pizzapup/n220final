@@ -2,7 +2,6 @@ class Dice {
   constructor(diceValues = [6, 5, 4, 3], isAnimating = false) {
     this.diceValues = diceValues;
     this.isAnimating = isAnimating;
-
     this.dotsOrders = {
       1: [0, 0, 0, 0, 1, 0, 0, 0, 0],
       2: [0, 0, 1, 0, 0, 0, 1, 0, 0],
@@ -11,13 +10,16 @@ class Dice {
       5: [1, 0, 1, 0, 1, 0, 1, 0, 1],
       6: [1, 1, 1, 0, 0, 0, 1, 1, 1],
     };
+  }
 
-    this.render();
+  updateIsAnimating(value) {
+    this.isAnimating = value;
   }
 
   render() {
     const diceContainer = document.getElementById("dice");
     diceContainer.className = "dice";
+    diceContainer.innerHTML = "";
 
     this.diceValues.forEach((dieValue) => {
       const dieElement = document.createElement("div");
@@ -41,5 +43,3 @@ class Dice {
     });
   }
 }
-
-new Dice([6, 5, 4, 3]);

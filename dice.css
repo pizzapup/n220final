@@ -1,0 +1,58 @@
+.dice {
+  /* Variables */
+  /* These can be customized. The rest of the styles should remain the same. */
+  --dice-size: 50px;
+  --dice-color: 10px;
+  --dot-color: #000000;
+  --dot-shadow-color: rgba(202, 204, 214, 0.9);
+  --dice-shadow-color: rgba(24, 33, 35, 0.1);
+
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.die {
+  background-color: #ffffff;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 4px;
+  box-shadow: inset 0px 0px 1px 1px var(--dice-shadow-color),
+    inset 5px 5px 3px 0.5px var(--dice-shadow-color),
+    inset -5px -5px 3px 0.5px var(--dice-shadow-color);
+}
+
+.die.roll {
+  animation: roll 1s linear infinite;
+  animation-fill-mode: forwards; /* Stop animation at the end state */
+}
+
+.die.roll:nth-child(even) {
+  animation-duration: 1s; /* Adjust the duration for even-indexed dice */
+  animation-delay: 0.25s; /* Add a delay before stopping */
+  animation-direction: reverse;
+}
+
+.die .dot {
+  width: 60%;
+  height: 60%;
+  background-color: var(--dot-color);
+  border-radius: 50%;
+  box-shadow: inset 0 0 7px var(--dot-shadow-color);
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
