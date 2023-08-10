@@ -3,22 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="dice.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/dice.css" />
+    <link rel="stylesheet" href="styles/inputs.css" />
+    <link rel="stylesheet" href="styles/results.css" />
     <title>Dice Roller</title>
   </head>
   <body>
     <div class="container">
-      <div id="rpg-ui">
-        <div id="header">Dice Roller</div>
-        <div id="buttons"></div>
-        <div id="dice"></div>
-        <div>
-          <ul id="inputs"></ul>
-        </div>
-        <div id="results"></div>
+      <h1>5e Character Score Calculator</h1>
+
+      <div id="dice" class="dice"></div>
+      <p class="description">
+        Calculates scores and modifiers for 5e characters. No dice? Click the
+        randomize button to "roll" 4d6 and drop the lowest. Click the submit
+        button to confirm the values.
+      </p>
+      <ul id="inputs"></ul>
+      <div id="message"></div>
+      <div id="buttons">
+        <button id="submitButton">Submit</button>
+        <button id="randomButton">Roll Dice</button>
       </div>
+      <div id="results"></div>
     </div>
+    <template id="template">
+      <div class="result-template">
+        <div class="result-count">Roll <span class="roll-count"></span></div>
+        <div class="result">
+          <div class="result-container">
+            <div class="result-label">Modifier</div>
+            <div class="result-value modifier"></div>
+          </div>
+          <div class="result-container">
+            <div class="result-label">Score</div>
+            <div class="result-value score"></div>
+          </div>
+          <div class="values-lists">
+            <div class="result-container">
+              <div class="result-label">Values</div>
+              <ul class="result-value result-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+    <script src="js/Template.js"></script>
+    <script src="js/Die.js"></script>
     <script src="js/Dice.js"></script>
     <script src="js/app.js"></script>
   </body>

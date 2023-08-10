@@ -1,0 +1,37 @@
+
+#results {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.result {
+  display: flex;
+  max-width: 500px;
+  justify-content: space-evenly;
+}
+.result-template {
+  border: 1px solid #f1f1f1;
+  background: #fafafa;
+  padding: 5px 0px;
+}
+.result-value {
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.result-list {
+  display: flex;
+  gap: 5px;
+}
+.li-result {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #f1f1f1;
+}
+.li-result.highlight {
+  background: rgb(220, 227, 239);
+}
+.li-result.duplicate {
+  background: rgba(220, 227, 239, 0.4);
+  color: rgb(137, 135, 129);
+}

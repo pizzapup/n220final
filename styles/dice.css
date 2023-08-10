@@ -1,6 +1,5 @@
 .dice {
   /* Variables */
-  /* These can be customized. The rest of the styles should remain the same. */
   --dice-size: 50px;
   --dice-color: 10px;
   --dot-color: #000000;

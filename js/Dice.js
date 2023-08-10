@@ -1,45 +1,38 @@
+// Dice.js
+
+// The Dice class handles the creation of dice, updating their dot patterns during rolls, and managing animation states.
+
 class Dice {
-  constructor(diceValues = [6, 5, 4, 3], isAnimating = false) {
-    this.diceValues = diceValues;
-    this.isAnimating = isAnimating;
-    this.dotsOrders = {
-      1: [0, 0, 0, 0, 1, 0, 0, 0, 0],
-      2: [0, 0, 1, 0, 0, 0, 1, 0, 0],
-      3: [0, 0, 1, 0, 1, 0, 1, 0, 0],
-      4: [1, 0, 1, 0, 0, 0, 1, 0, 1],
-      5: [1, 0, 1, 0, 1, 0, 1, 0, 1],
-      6: [1, 1, 1, 0, 0, 0, 1, 1, 1],
-    };
+  // Constructor accepts an array of values representing the "scores" of each die.
+  constructor(values = [6, 5, 4, 3]) {
+    this.diceContainer = document.getElementById("dice"); // The container for rendering dice.
+    this.values = values; // Array of values representing the 4d6 values passed to each die.
+    this.dice = []; // Array to hold Die instances.
+    this.initDice(); // Initialize the dice.
   }
 
-  updateIsAnimating(value) {
-    this.isAnimating = value;
-  }
-
-  render() {
-    const diceContainer = document.getElementById("dice");
-    diceContainer.className = "dice";
-    diceContainer.innerHTML = "";
-
-    this.diceValues.forEach((dieValue) => {
-      const dieElement = document.createElement("div");
-      dieElement.className = `die ${this.isAnimating ? "roll" : ""}`;
-
-      if (dieValue <= 6 && dieValue >= 1) {
-        this.dotsOrders[dieValue].forEach((dot) => {
-          const dotElement = document.createElement("div");
-          dotElement.className = dot === 1 ? "dot" : "";
-          dieElement.appendChild(dotElement);
-        });
-      } else {
-        this.dotsOrders[1].forEach((dot) => {
-          const dotElement = document.createElement("div");
-          dotElement.className = dot === 1 ? "dot" : "";
-          dieElement.appendChild(dotElement);
-        });
-      }
-
-      diceContainer.appendChild(dieElement);
+  // The roll method updates dot patterns for each die based on provided values and triggers animation.
+  roll(values) {
+    this.dice.forEach((die, index) => {
+      die.updateDotPattern(values[index]); // Update dot pattern for each die.
+      die.newDie.className = "die roll"; // Add "roll" class to trigger animation.
+      setTimeout(() => {
+        die.newDie.className = "die"; // Remove "roll" class after 1 second to reset animation.
+      }, 1000);
     });
+  }
+
+  // The initDice method creates Die instances for each value, appends them to the container, and initializes dot patterns.
+  initDice() {
+    // Create Die instances for each of the 4 dice.
+    for (let i = 1; i < 5; i++) {
+      const die = new Die(i); // Create a new Die instance.
+      this.dice.push(die); // Store the new die in the dice array.
+      this.diceContainer.appendChild(die.newDie); // Append die to the container.
+      // Initialize dot patterns for each die.
+      this.dice.forEach((die, index) => {
+        die.updateDotPattern(this.values[index]);
+      });
+    }
   }
 }
